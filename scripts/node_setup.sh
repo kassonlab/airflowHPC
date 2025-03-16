@@ -14,11 +14,11 @@ export RADICAL_UTILS_NO_ATFORK=1
 portnum=$(grep -oP "^port = \K\d+" $PREFIX/postgresql_db/data/postgresql.conf)
 if [ -n "$portnum" ]; then
   echo "Port number is $portnum"
-  export AIRFLOW__DATABASE__SQL_ALCHEMY_CONN="postgresql+psycopg2://airflow_user:airflow_pass@localhost:$portnum/airflow_db"
+  export AIRFLOW__DATABASE__SQL_ALCHEMY_CONN="postgresql+psycopg2://airflow_user:${AIRFLOWPASS}@localhost:$portnum/airflow_db"
   pg_opts="-o \"-p $portnum\" -D $PREFIX/postgresql_db/data/ -l $PREFIX/postgresql_db/server.log"
 else
   echo "Port number not found in postgresql_db/data/postgresql.conf"
-  export AIRFLOW__DATABASE__SQL_ALCHEMY_CONN="postgresql+psycopg2://airflow_user:airflow_pass@localhost/airflow_db"
+  export AIRFLOW__DATABASE__SQL_ALCHEMY_CONN="postgresql+psycopg2://airflow_user:${AIRFLOWPASS}@localhost/airflow_db"
   pg_opts="-D $PREFIX/postgresql_db/data/ -l $PREFIX/postgresql_db/server.log"
 fi
 
