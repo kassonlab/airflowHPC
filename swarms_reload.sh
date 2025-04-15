@@ -70,8 +70,8 @@ airflow pools set default_pool 512 "default"
 
 airflow dags unpause pull
 airflow dags unpause simulate_expand_uniform
-airflow dags unpause swarms2
+airflow dags unpause swarms
 #airflow scheduler -D
 #airflow standalone 2>&1 > $PREFIX/airflow-standalone.log 2>&1 &
-#airflow dags trigger -v swarms2
-airflow dags backfill --reset-dagruns -y -s 2025-01-01 swarms2
+#airflow dags trigger -v swarms
+airflow dags backfill --reset-dagruns -y -s 2025-01-01 swarms
